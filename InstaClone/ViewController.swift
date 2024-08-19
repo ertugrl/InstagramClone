@@ -34,7 +34,11 @@ class ViewController: UIViewController {
                     // Present the Tab Bar Controller modally
 //                    tabBarVC.modalPresentationStyle = .fullScreen
 //                    self.present(tabBarVC, animated: true, completion: nil)
-                    self.navigationController?.pushViewController(tabBarVC, animated: true)
+                    
+                    // THIS CODE BELOW DOES NOT WORK AS EXPECTED
+//                    self.navigationController?.pushViewController(tabBarVC, animated: true)
+                    self.view.window?.rootViewController = tabBarVC
+                    self.view.window?.makeKeyAndVisible()
                 }
             }
         } else {
