@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseFirestore
 import SDWebImage
+import SDWebImageMapKit
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
