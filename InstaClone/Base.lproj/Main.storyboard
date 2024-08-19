@@ -199,6 +199,10 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n9g-qd-hJQ">
                                                     <rect key="frame" x="20" y="57" width="353" height="253"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="253" id="7oz-9C-MAU"/>
+                                                        <constraint firstAttribute="width" constant="353" id="svN-BK-nRh"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="useremail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sbm-bJ-A8E">
                                                     <rect key="frame" x="20" y="11" width="353" height="21"/>
@@ -235,6 +239,12 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="05P-UQ-LlD">
+                                                    <rect key="frame" x="331" y="11" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Sbm-bJ-A8E" firstAttribute="leading" secondItem="n9g-qd-hJQ" secondAttribute="leading" id="2vY-LO-UH0"/>
@@ -247,13 +257,16 @@
                                                 <constraint firstItem="wT7-tI-tnk" firstAttribute="top" secondItem="qb5-Nc-sAj" secondAttribute="bottom" constant="16" id="e3m-RS-Fpp"/>
                                                 <constraint firstItem="qb5-Nc-sAj" firstAttribute="trailing" secondItem="3n5-wy-cvP" secondAttribute="trailing" id="fhP-Dj-IRZ"/>
                                                 <constraint firstItem="wT7-tI-tnk" firstAttribute="leading" secondItem="wec-7L-KnB" secondAttribute="leadingMargin" constant="10" id="iHF-53-F7K"/>
+                                                <constraint firstItem="05P-UQ-LlD" firstAttribute="trailing" secondItem="Sbm-bJ-A8E" secondAttribute="trailing" id="jyL-TI-mtw"/>
                                                 <constraint firstItem="n9g-qd-hJQ" firstAttribute="leading" secondItem="qb5-Nc-sAj" secondAttribute="leading" id="p1x-8j-fq5"/>
+                                                <constraint firstItem="05P-UQ-LlD" firstAttribute="baseline" secondItem="Sbm-bJ-A8E" secondAttribute="baseline" id="p33-Xk-9D9"/>
                                                 <constraint firstItem="wT7-tI-tnk" firstAttribute="bottom" secondItem="wec-7L-KnB" secondAttribute="bottomMargin" id="sNM-Aw-tWn"/>
                                                 <constraint firstItem="wT7-tI-tnk" firstAttribute="bottom" secondItem="3n5-wy-cvP" secondAttribute="bottom" id="yh3-cG-GBV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="commentLabel" destination="qb5-Nc-sAj" id="GWv-Ii-ShC"/>
+                                            <outlet property="documentIDLabel" destination="05P-UQ-LlD" id="Ok3-xx-eUI"/>
                                             <outlet property="likeLabel" destination="3n5-wy-cvP" id="kMh-e0-Wx5"/>
                                             <outlet property="postImageView" destination="n9g-qd-hJQ" id="TKf-Ox-fxM"/>
                                             <outlet property="userEmailLabel" destination="Sbm-bJ-A8E" id="rfz-La-xRK"/>

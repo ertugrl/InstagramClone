@@ -32,8 +32,9 @@ class ViewController: UIViewController {
                     let tabBarVC = storyboard.instantiateViewController(identifier: "tabBarMenu") as! UITabBarController
                     
                     // Present the Tab Bar Controller modally
-                    tabBarVC.modalPresentationStyle = .fullScreen
-                    self.present(tabBarVC, animated: true, completion: nil)
+//                    tabBarVC.modalPresentationStyle = .fullScreen
+//                    self.present(tabBarVC, animated: true, completion: nil)
+                    self.navigationController?.pushViewController(tabBarVC, animated: true)
                 }
             }
         } else {
