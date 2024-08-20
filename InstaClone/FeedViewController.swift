@@ -14,12 +14,13 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var tableView: UITableView!
     
-    var userEmailArray = [String]()
-    var userCommantArray = [String]()
-    var likeArray = [Int]()
-    var userImageArray = [String]()
-    var documentIDArray = [String]()
+//    var userEmailArray = [String]()
+//    var userCommantArray = [String]()
+//    var likeArray = [Int]()
+//    var userImageArray = [String]()
+//    var documentIDArray = [String]()
     
+    var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,30 +42,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             } else {
                 if snapshot?.isEmpty != true && snapshot != nil {
                     
-                    self.userEmailArray.removeAll(keepingCapacity: false)
-                    self.userCommantArray.removeAll(keepingCapacity: false)
-                    self.userImageArray.removeAll(keepingCapacity: false)
-                    self.likeArray.removeAll(keepingCapacity: false)
-                    self.documentIDArray.removeAll(keepingCapacity: false )
+                    self.posts.removeAll(keepingCapacity: true)
                     
                     for document in snapshot!.documents {
                         let documentID = document.documentID
-                        self.documentIDArray.append(documentID)
                         
-                        if let postedBy = document.get("postedBy") as? String {
-                            self.userEmailArray.append(postedBy)
-                        }
-                        
-                        if let postComment = document.get("postComment") as? String {
-                            self.userCommantArray.append(postComment)
-                        }
-                        
-                        if let likes = document.get("likes") as? Int {
-                            self.likeArray.append(likes)
-                        }
-                        
-                        if let imageUrl = document.get("imageUrl") as? String {
-                            self.userImageArray.append(imageUrl)
+                        if let postedBy = document.get("postedBy") as? String,
+                           let postComment = document.get("postComment") as? String,
+                           let likes = document.get("likes") as? Int,
+                           let imageUrl = document.get("imageUrl") as? String {
+                            let post = Post(userEmail: postedBy, comment: postComment, likes: likes, imageUrl: imageUrl, documentID: documentID)
+                            self.posts.append(post)
                         }
                     }
                     
@@ -72,23 +60,22 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
         }
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userEmailArray.count
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
-        cell.userEmailLabel.text = userEmailArray[indexPath.row]
-        cell.likeLabel.text = String(likeArray[indexPath.row])
-        cell.commentLabel.text = userCommantArray[indexPath.row]
-        cell.postImageView.sd_setImage(with: URL(string: self.userImageArray[indexPath.row]))
-        cell.documentIDLabel.text = documentIDArray[indexPath.row ]
+        let post = posts[indexPath.row]
+        
+        cell.userEmailLabel.text = post.userEmail
+        cell.likeLabel.text = String(post.likes)
+        cell.commentLabel.text = post.comment
+        cell.postImageView.sd_setImage(with: URL(string: post.imageUrl))
+        cell.documentIDLabel.text = post.documentID
         
         return cell
     }
-    
-
 }
