@@ -30,6 +30,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.delegate = self
         tableView.dataSource = self
         
+        // Required for enable the commend line to be multiple line
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 200 // Estimate based on your design
+        
         getDataFromFirestore()
     }
     
