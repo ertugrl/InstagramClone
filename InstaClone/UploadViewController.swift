@@ -40,13 +40,6 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.dismiss(animated: true, completion: nil)
     }
     
-    func makeAlert(titleInput: String, messageInput: String) {
-        let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
-        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-        alert.addAction(okButton)
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     @IBAction func uploadActionClicked(_ sender: UIButton) {
         let storage = Storage.storage()
         let storageReference = storage.reference()
@@ -59,8 +52,8 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             let imageReference = mediaFolder.child("\(uuid).jpg")
             imageReference.putData(data) { metadata, error in
-                if error != nil {
-                    self.makeAlert(titleInput: "Error!", messageInput: error?.localizedDescription ?? "Error")
+                if let error = error {
+                    UIAlertController.showAlert(on: self, title: "Error", message: error.localizedDescription)
                 } else {
                     imageReference.downloadURL { url, error in
                         if error == nil {
@@ -76,8 +69,8 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                             let firestorePost = ["imageUrl" : imageUrl!, "postedBy" : Auth.auth().currentUser!.email!, "postComment" : self.commentText.text!, "date" : FieldValue.serverTimestamp(), "likes" : 0] as [String : Any]
                             
                             firestoreReference = firestoreDatabase.collection("Posts").addDocument(data: firestorePost, completion: { (error) in
-                                if error != nil {
-                                    self.makeAlert(titleInput: "Error!", messageInput: error?.localizedDescription ?? "Error")
+                                if let error = error {
+                                    UIAlertController.showAlert(on: self, title: "Error", message: error.localizedDescription)
                                 } else {
                                     self.tabBarController?.selectedIndex = 0 // Move to "Feed" page
                                     self.imageView.image = UIImage(named: "Image") // Return the default image
