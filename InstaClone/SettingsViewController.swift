@@ -41,8 +41,8 @@ class SettingsViewController: UIViewController {
             try Auth.auth().signOut()
 
             // Set the login screen as the root view controller after logging out
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginVC = storyboard.instantiateViewController(withIdentifier: "login") as! ViewController
+            
+            let loginVC = UIStoryboard.getMainStoryboard("login")
             
             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                let window = windowScene.windows.first {
