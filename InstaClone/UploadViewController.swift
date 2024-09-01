@@ -10,7 +10,7 @@ import FirebaseStorage
 import FirebaseFirestore
 import FirebaseAuth
 
-class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+final class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var commentText: UITextField!

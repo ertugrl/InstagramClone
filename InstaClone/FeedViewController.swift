@@ -10,8 +10,8 @@ import FirebaseFirestore
 import SDWebImage
 import SDWebImageMapKit
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+final class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     @IBOutlet private weak var tableView: UITableView!
     
     private var posts = [Post]()

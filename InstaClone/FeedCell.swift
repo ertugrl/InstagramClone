@@ -8,13 +8,13 @@
 import UIKit
 import FirebaseFirestore
 
-class FeedCell: UITableViewCell {
+final class FeedCell: UITableViewCell {
 
     // MARK: UI Elements
-    @IBOutlet weak var postImageView: UIImageView!
-    @IBOutlet weak var userEmailLabel: UILabel!
-    @IBOutlet weak var commentLabel: UILabel!
-    @IBOutlet weak var likeLabel: UILabel!
+    @IBOutlet private weak var postImageView: UIImageView!
+    @IBOutlet private weak var userEmailLabel: UILabel!
+    @IBOutlet private weak var commentLabel: UILabel!
+    @IBOutlet private weak var likeLabel: UILabel!
     
     private var documentID: String?
     

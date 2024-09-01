@@ -27,11 +27,19 @@ final class ViewController: UIViewController {
                 return
             }
             
+            // WHAT IS THE DIFFERENCES
+//            guard let window = self.view.window else { return }
+//            let tabBarVC = UIStoryboard.getMainStoryboard("tabBarMenu")
+//            
+//            window.rootViewController = tabBarVC
+//            window.makeKeyAndVisible()
             
-            guard let window = self.view.window else { return }
-            let tabBarVC = UIStoryboard.getMainStoryboard("tabBarMenu")
-            window.rootViewController = tabBarVC
-            window.makeKeyAndVisible()
+            let tabBarVC = CustomTabBarController()
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first {
+                window.rootViewController = tabBarVC
+                window.makeKeyAndVisible()
+            }
         }
         
         
@@ -54,7 +62,8 @@ final class ViewController: UIViewController {
     }
     
     @IBAction private func signUpClicked(_ sender: UIButton) {
-        guard let email = emailText.text, email.isEmpty, let password = passwordText.text, password.isEmpty else {
+        guard let email = emailText.text, !email.isEmpty,
+              let password = passwordText.text, !password.isEmpty else {
             UIAlertController.showAlert(on: self, title: "Error", message: "Username/Password?")
             return
         }
@@ -65,11 +74,20 @@ final class ViewController: UIViewController {
                 UIAlertController.showAlert(on: self, title: "Error", message: error.localizedDescription)
                 return
             }
-            guard let window = self.view.window else { return }
-            let tabBarVC = UIStoryboard.getMainStoryboard("tabBarMenu")
             
-            window.rootViewController = tabBarVC
-            window.makeKeyAndVisible()
+            // WHAT IS THE DIFFERENCES
+//            guard let window = self.view.window else { return }
+//            let tabBarVC = UIStoryboard.getMainStoryboard("tabBarMenu")
+//            
+//            window.rootViewController = tabBarVC
+//            window.makeKeyAndVisible()
+            
+            let tabBarVc = CustomTabBarController()
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first {
+                window.rootViewController = tabBarVc
+                window.makeKeyAndVisible()
+            }
         }
         
         // BEFORE THE CHANGE
