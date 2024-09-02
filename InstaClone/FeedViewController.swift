@@ -19,6 +19,8 @@ final class FeedViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.register(UINib(nibName: "FeedCell", bundle: nil), forCellReuseIdentifier: "Cell")
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -89,9 +91,11 @@ final class FeedViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { posts.count }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
-        let post = posts[indexPath.row]
         
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? FeedCell else {
+            return UITableViewCell()
+        }
+        let post = posts[indexPath.row]
         cell.setPost(post)
         
         return cell
