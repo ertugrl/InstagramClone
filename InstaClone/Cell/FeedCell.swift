@@ -2,7 +2,7 @@
 //  FeedCell.swift
 //  InstaClone
 //
-//  Created by Ertuğrul Şahin on 15.08.2024.
+//  Created by Ertuğrul Şahin on 1.09.2024.
 //
 
 import UIKit
@@ -45,3 +45,4 @@ final class FeedCell: UITableViewCell {
 //        }
     }
 }
+

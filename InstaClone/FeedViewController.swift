@@ -10,85 +10,94 @@ import FirebaseFirestore
 import SDWebImage
 import SDWebImageMapKit
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    @IBOutlet weak var tableView: UITableView!
+final class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var userEmailArray = [String]()
-    var userCommantArray = [String]()
-    var likeArray = [Int]()
-    var userImageArray = [String]()
-    var documentIDArray = [String]()
+    @IBOutlet private weak var tableView: UITableView!
     
+    private var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        tableView.register(UINib(nibName: "FeedCell", bundle: nil), forCellReuseIdentifier: "Cell")
         
         tableView.delegate = self
         tableView.dataSource = self
         
+        // Required for enable the commend line to be multiple line
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 200
+        
         getDataFromFirestore()
     }
+    
+//    func getDataFromFirestore() {
+//        let firestoreDatabase = Firestore.firestore()
+//        
+//        firestoreDatabase.collection("Posts").order(by: "date", descending: true).addSnapshotListener { snapshot, error in
+//            if error != nil {
+//                print(error?.localizedDescription ?? "Error")
+//            } else {
+//                if snapshot?.isEmpty != true && snapshot != nil {
+//                    
+//                    self.posts.removeAll(keepingCapacity: true)
+//                    
+//                    for document in snapshot!.documents {
+//                        let documentID = document.documentID
+//                        
+//                        if let postedBy = document.get("postedBy") as? String,
+//                           let postComment = document.get("postComment") as? String,
+//                           let likes = document.get("likes") as? Int,
+//                           let imageUrl = document.get("imageUrl") as? String {
+//                            let post = Post(userEmail: postedBy, comment: postComment, likes: likes, imageUrl: imageUrl, documentID: documentID)
+//                            self.posts.append(post)
+//                        }
+//                    }
+//                    
+//                    self.tableView.reloadData()
+//                }
+//            }
+//        }
+//    }
     
     func getDataFromFirestore() {
         let firestoreDatabase = Firestore.firestore()
         
-        firestoreDatabase.collection("Posts").order(by: "date", descending: true).addSnapshotListener { snapshot, error in
-            if error != nil {
-                print(error?.localizedDescription ?? "Error")
-            } else {
-                if snapshot?.isEmpty != true && snapshot != nil {
-                    
-                    self.userEmailArray.removeAll(keepingCapacity: false)
-                    self.userCommantArray.removeAll(keepingCapacity: false)
-                    self.userImageArray.removeAll(keepingCapacity: false)
-                    self.likeArray.removeAll(keepingCapacity: false)
-                    self.documentIDArray.removeAll(keepingCapacity: false )
-                    
-                    for document in snapshot!.documents {
-                        let documentID = document.documentID
-                        self.documentIDArray.append(documentID)
-                        
-                        if let postedBy = document.get("postedBy") as? String {
-                            self.userEmailArray.append(postedBy)
-                        }
-                        
-                        if let postComment = document.get("postComment") as? String {
-                            self.userCommantArray.append(postComment)
-                        }
-                        
-                        if let likes = document.get("likes") as? Int {
-                            self.likeArray.append(likes)
-                        }
-                        
-                        if let imageUrl = document.get("imageUrl") as? String {
-                            self.userImageArray.append(imageUrl)
-                        }
-                    }
-                    
-                    self.tableView.reloadData()
+        firestoreDatabase.collection("Posts").order(by: "date", descending: true).addSnapshotListener { [weak self] snapshot, error in
+            guard let self else { return }
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            guard let snapshot = snapshot, !snapshot.isEmpty else { return }
+            
+            self.posts.removeAll()
+            for document in snapshot.documents {
+                let documentID = document.documentID
+                
+                if let postedBy = document.get("postedBy") as? String,
+                   let postComment = document.get("postComment") as? String,
+                   let likes = document.get("likes") as? Int,
+                   let imageUrl = document.get("imageUrl") as? String {
+                    let post = Post(userEmail: postedBy, comment: postComment, likes: likes, imageUrl: imageUrl, documentID: documentID)
+                    self.posts.append(post)
                 }
             }
+            
+            self.tableView.reloadData()
         }
-        
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userEmailArray.count
-    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { posts.count }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
-        cell.userEmailLabel.text = userEmailArray[indexPath.row]
-        cell.likeLabel.text = String(likeArray[indexPath.row])
-        cell.commentLabel.text = userCommantArray[indexPath.row]
-        cell.postImageView.sd_setImage(with: URL(string: self.userImageArray[indexPath.row]))
-        cell.documentIDLabel.text = documentIDArray[indexPath.row ]
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? FeedCell else {
+            return UITableViewCell()
+        }
+        let post = posts[indexPath.row]
+        cell.setPost(post)
         
         return cell
     }
-    
-
 }

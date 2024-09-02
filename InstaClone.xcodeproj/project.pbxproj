@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A52B3E182C6DF9C9007EAF9E /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B3E172C6DF9C9007EAF9E /* FeedCell.swift */; };
 		A54E040A2C7317DA00488161 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A54E04092C7317DA00488161 /* SDWebImage */; };
 		A54E040C2C7317DA00488161 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A54E040B2C7317DA00488161 /* SDWebImageMapKit */; };
+		A556BA272C805F240040F837 /* UIStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556BA262C805F240040F837 /* UIStoryboard+Extensions.swift */; };
+		A556BA292C805F280040F837 /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556BA282C805F280040F837 /* UIAlertController+Extensions.swift */; };
+		A5714C012C847B2100CFC7E1 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5714C002C847B2100CFC7E1 /* FeedCell.xib */; };
+		A5714C022C847B2100CFC7E1 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5714BFF2C847B2100CFC7E1 /* FeedCell.swift */; };
+		A58DD1CD2C74C4920034D6A8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58DD1CC2C74C4920034D6A8 /* Post.swift */; };
 		A5BF355C2C649B2B00B18553 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF355B2C649B2B00B18553 /* FeedViewController.swift */; };
 		A5BF355E2C649B3500B18553 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF355D2C649B3500B18553 /* UploadViewController.swift */; };
 		A5BF35602C649B4700B18553 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF355F2C649B4700B18553 /* SettingsViewController.swift */; };
+		A5C5E7292C82191400BA771F /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5E7282C82191400BA771F /* CustomTabBarController.swift */; };
 		A5DCEA272C63928100AD8CD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DCEA262C63928100AD8CD6 /* AppDelegate.swift */; };
 		A5DCEA292C63928100AD8CD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DCEA282C63928100AD8CD6 /* SceneDelegate.swift */; };
 		A5DCEA2B2C63928100AD8CD6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DCEA2A2C63928100AD8CD6 /* ViewController.swift */; };
@@ -27,10 +32,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A52B3E172C6DF9C9007EAF9E /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		A556BA262C805F240040F837 /* UIStoryboard+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extensions.swift"; sourceTree = "<group>"; };
+		A556BA282C805F280040F837 /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
+		A5714BFF2C847B2100CFC7E1 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		A5714C002C847B2100CFC7E1 /* FeedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedCell.xib; sourceTree = "<group>"; };
+		A58DD1CC2C74C4920034D6A8 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A5BF355B2C649B2B00B18553 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		A5BF355D2C649B3500B18553 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		A5BF355F2C649B4700B18553 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A5C5E7282C82191400BA771F /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		A5DCEA232C63928100AD8CD6 /* InstaClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5DCEA262C63928100AD8CD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5DCEA282C63928100AD8CD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,9 +76,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A5714BF82C84776E00CFC7E1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A5714BFF2C847B2100CFC7E1 /* FeedCell.swift */,
+				A5714C002C847B2100CFC7E1 /* FeedCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A58DD1CB2C74C4590034D6A8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A58DD1CC2C74C4920034D6A8 /* Post.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A5DCEA1A2C63928100AD8CD6 = {
 			isa = PBXGroup;
 			children = (
+				A5EF89D42C7F4A75000734CF /* Extensions */,
+				A58DD1CB2C74C4590034D6A8 /* Models */,
 				A5DCEA252C63928100AD8CD6 /* InstaClone */,
 				A5DCEA242C63928100AD8CD6 /* Products */,
 				A54E04072C73169D00488161 /* Frameworks */,
@@ -89,8 +118,9 @@
 				A5DCEA262C63928100AD8CD6 /* AppDelegate.swift */,
 				A5DCEA282C63928100AD8CD6 /* SceneDelegate.swift */,
 				A5DCEA2A2C63928100AD8CD6 /* ViewController.swift */,
+				A5C5E7282C82191400BA771F /* CustomTabBarController.swift */,
 				A5BF355B2C649B2B00B18553 /* FeedViewController.swift */,
-				A52B3E172C6DF9C9007EAF9E /* FeedCell.swift */,
+				A5714BF82C84776E00CFC7E1 /* Cell */,
 				A5BF355D2C649B3500B18553 /* UploadViewController.swift */,
 				A5BF355F2C649B4700B18553 /* SettingsViewController.swift */,
 				A5DCEA2C2C63928100AD8CD6 /* Main.storyboard */,
@@ -100,6 +130,15 @@
 				A5DCEA3A2C63994E00AD8CD6 /* GoogleService-Info.plist */,
 			);
 			path = InstaClone;
+			sourceTree = "<group>";
+		};
+		A5EF89D42C7F4A75000734CF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A556BA262C805F240040F837 /* UIStoryboard+Extensions.swift */,
+				A556BA282C805F280040F837 /* UIAlertController+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +215,7 @@
 				A5DCEA3B2C63994E00AD8CD6 /* GoogleService-Info.plist in Resources */,
 				A5DCEA332C63928400AD8CD6 /* Base in Resources */,
 				A5DCEA2E2C63928100AD8CD6 /* Base in Resources */,
+				A5714C012C847B2100CFC7E1 /* FeedCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,12 +226,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A52B3E182C6DF9C9007EAF9E /* FeedCell.swift in Sources */,
 				A5BF355E2C649B3500B18553 /* UploadViewController.swift in Sources */,
 				A5BF35602C649B4700B18553 /* SettingsViewController.swift in Sources */,
+				A58DD1CD2C74C4920034D6A8 /* Post.swift in Sources */,
 				A5DCEA2B2C63928100AD8CD6 /* ViewController.swift in Sources */,
+				A5714C022C847B2100CFC7E1 /* FeedCell.swift in Sources */,
+				A5C5E7292C82191400BA771F /* CustomTabBarController.swift in Sources */,
 				A5BF355C2C649B2B00B18553 /* FeedViewController.swift in Sources */,
 				A5DCEA272C63928100AD8CD6 /* AppDelegate.swift in Sources */,
+				A556BA272C805F240040F837 /* UIStoryboard+Extensions.swift in Sources */,
+				A556BA292C805F280040F837 /* UIAlertController+Extensions.swift in Sources */,
 				A5DCEA292C63928100AD8CD6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
